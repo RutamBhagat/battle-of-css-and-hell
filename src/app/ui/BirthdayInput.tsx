@@ -14,12 +14,27 @@ function getYearOptions(): number[] {
   return years;
 }
 
-export default function BirthdayInput({ initialText = "[]" }: Props) {
+export default function BirthdayInput({ initialText }: Props) {
   const years = React.useMemo(() => getYearOptions(), []);
   const defaultYear = years[0];
   const [year, setYear] = React.useState<number>(defaultYear);
-  const [text, setText] = React.useState<string>(initialText);
+  const [text, setText] = React.useState<string>(initialText ?? "[]");
   const [error, setError] = React.useState<string | null>(null);
+
+  React.useEffect(() => {
+    if (initialText == null) {
+      (async () => {
+        try {
+          const res = await fetch("/birthday.json", { cache: "no-store" });
+          if (!res.ok) throw new Error(String(res.status));
+          const body = await res.text();
+          setText(body);
+        } catch (_err) {
+          // keep default [] on failure
+        }
+      })();
+    }
+  }, [initialText]);
 
   type Person = { name: string; birthday: string };
   type DayMap = Record<string, string[]>;
