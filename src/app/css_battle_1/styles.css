@@ -1,5 +1,14 @@
-.spiral {
-  width: 100px;
-  height: 100px;
-  background: #dd6b4d;
+.battle-canvas {
+  position: relative;
+  width: 400px;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #F5D6B4;
+}
+
+.spiral-shape {
+  width: 240px;
+  height: 240px;
 }

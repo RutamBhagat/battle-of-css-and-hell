@@ -2,19 +2,20 @@ import "./styles.css";
 
 import React from "react";
 
-type Props = {};
-
-export default function page({}: Props) {
+export default function page() {
   return (
-    <div
+    <main
       style={{
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        height: "100vh",
+        minHeight: "100vh",
+        // backgroundColor: "#f5d6b4",
       }}
     >
-      <div className="spiral"></div>
-    </div>
+      <div className="battle-canvas">
+        <div className="spiral-shape" />
+      </div>
+    </main>
   );
 }
