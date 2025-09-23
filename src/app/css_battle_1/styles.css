@@ -18,7 +18,9 @@
   height: 240px;
   background: repeating-radial-gradient(
     circle,
-    var(--spiral-color) 0 22px,
-    transparent 22px 44px
+    var(--spiral-color) 0 20px,
+    transparent 20px 40px
   );
+  -webkit-mask: conic-gradient(#000 0 330deg, transparent 330deg);
+  mask: conic-gradient(#000 0 330deg, transparent 330deg);
 }
