@@ -6,6 +6,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import Editor from "@monaco-editor/react";
 // import React from "react";
 import { useDropzone } from "react-dropzone";
+import moment from "moment";
 
 type Props = {
   initialText?: string;
@@ -91,6 +92,12 @@ export default function BirthdayInput({ initialText }: Props) {
       return [];
     }
   }, [text]);
+
+  function formatBirthday(birthday: string): string {
+    const m = moment(birthday, ["YYYY-MM-DD", "MM/DD/YYYY", "DD-MM-YYYY"], true);
+    if (!m.isValid()) return birthday;
+    return m.format("DD-MM-YYYY");
+  }
 
   function parseMonthDay(
     birthday: string
@@ -273,9 +280,9 @@ export default function BirthdayInput({ initialText }: Props) {
                           <div
                             key={i}
                             className={`cell color-${idx}`}
-                            title={`${name} — ${person.birthday}`}
+                            title={`${name} — ${formatBirthday(person.birthday)}`}
                             data-name={name}
-                            data-date={person.birthday}
+                            data-date={formatBirthday(person.birthday)}
                             aria-label={name}
                           >
                             {initials(name)}
