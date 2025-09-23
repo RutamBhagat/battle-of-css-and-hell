@@ -16,4 +16,7 @@
 .spiral-shape {
   width: 240px;
   height: 240px;
+  background: conic-gradient(var(--spiral-color) 0 330deg, transparent 330deg);
+  -webkit-mask: radial-gradient(circle, transparent calc(50% - 64px), #000 calc(50% - 64px));
+  mask: radial-gradient(circle, transparent calc(50% - 64px), #000 calc(50% - 64px));
 }
