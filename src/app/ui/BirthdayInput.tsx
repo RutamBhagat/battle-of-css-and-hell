@@ -138,22 +138,6 @@ export default function BirthdayInput({ initialText = "[]" }: Props) {
             const cols = Math.max(1, Math.ceil(Math.sqrt(Math.max(1, count))));
             const total = cols * cols;
             // Assign colors: prefer stable hash per name, but keep colors unique within the day.
-            const paletteSize = 5;
-            const used = new Set<number>();
-            const colorForIndex = (name: string): number => {
-              let c = nameColorIndex(name);
-              // Greedy resolve collisions within the card
-              for (let step = 0; step < paletteSize; step++) {
-                const idx = (c + step) % paletteSize;
-                if (!used.has(idx)) {
-                  used.add(idx);
-                  return idx;
-                }
-              }
-              // Fallback if more people than palette size
-              const fallback = nameColorIndex(name);
-              return fallback;
-            };
             return (
               <div key={day} className="day-card">
                 <div className="day-header day-header-right">{day.slice(0, 3).toUpperCase()}</div>
@@ -162,7 +146,7 @@ export default function BirthdayInput({ initialText = "[]" }: Props) {
                     {Array.from({ length: total }).map((_, i) => {
                       if (i < count) {
                         const name = people[i];
-                        const idx = colorForIndex(name);
+                        const idx = i % 5; // position-based color: 0..4 cycling left-to-right
                         return (
                           <div
                             key={i}
