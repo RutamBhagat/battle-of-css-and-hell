@@ -259,8 +259,7 @@ body {
 
 .day-body {
   background: #f3f5f7;
-  border: 1px solid #d7d7d7;
-  border-top: none;
+  border: none;
   aspect-ratio: 1 / 1;
   display: flex;
 }
@@ -305,6 +304,9 @@ body {
 
 .year-segment-select-wrap {
   padding: 0;
+  display: block; /* ensure the select can span full width */
+  width: 100%;
+  height: 100%;
 }
 
 .year-segment-select {
@@ -321,6 +323,9 @@ body {
   background-image: none;
   padding-right: 0;
   font-size: 1rem;
+  display: block;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 .day-grid {
