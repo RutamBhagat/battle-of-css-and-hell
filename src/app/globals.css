@@ -109,14 +109,16 @@ body {
 /* Calendar preview (simple, empty) */
 .calendar {
   margin-top: 1rem;
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  display: flex;
+  flex-wrap: wrap;
   gap: 12px;
+  justify-content: center;
 }
 
 .day-card {
   display: flex;
   flex-direction: column;
+  width: 120px;
 }
 
 .day-header {
