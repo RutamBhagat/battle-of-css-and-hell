@@ -72,7 +72,7 @@ export default function BirthdayInput({ initialText }: Props) {
   }, [initialText]);
 
   type Person = { name: string; birthday: string };
-  type DayMap = Record<string, string[]>;
+  type DayMap = Record<string, Person[]>;
 
   const parsed: Person[] = React.useMemo(() => {
     try {
@@ -116,7 +116,7 @@ export default function BirthdayInput({ initialText }: Props) {
       "Friday",
       "Saturday",
     ];
-    const map: DayMap = Object.fromEntries(labels.map((l) => [l, []]));
+    const map: DayMap = Object.fromEntries(labels.map((l) => [l, [] as Person[]]));
 
     // Sort youngest to oldest (later birth year first)
     const sorted = [...parsed].sort((a, b) => {
@@ -138,7 +138,7 @@ export default function BirthdayInput({ initialText }: Props) {
       const dt = new Date(year, md.month - 1, md.day);
       const weekday = dt.getDay(); // 0=Sun..6=Sat
       const label = labels[weekday];
-      map[label].push(p.name);
+      map[label].push(p);
     }
     return map;
   }
@@ -280,13 +280,16 @@ export default function BirthdayInput({ initialText }: Props) {
                   >
                     {Array.from({ length: total }).map((_, i) => {
                       if (i < count) {
-                        const name = people[i];
+                        const person = people[i];
+                        const name = person.name;
                         const idx = i % 5; // position-based color: 0..4 cycling left-to-right
                         return (
                           <div
                             key={i}
                             className={`cell color-${idx}`}
-                            title={name}
+                            title={`${name} — ${person.birthday}`}
+                            data-name={name}
+                            data-date={person.birthday}
                             aria-label={name}
                           >
                             {initials(name)}

@@ -290,6 +290,7 @@ body {
   font-weight: 700;
   font-size: 0.8rem;
   color: #fff;
+  position: relative;
 }
 
 .cell.empty {
@@ -313,4 +314,35 @@ body {
 }
 .day-header-right {
   text-align: right;
+}
+
+/* Simple tooltip for cells */
+.cell[data-name][data-date]:hover::after {
+  content: attr(data-name) "\A" attr(data-date);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(17, 17, 17, 0.95);
+  color: #fff;
+  padding: 4px 6px;
+  border-radius: 4px;
+  white-space: pre;
+  font-size: 0.7rem;
+  line-height: 1;
+  margin-bottom: 6px;
+  pointer-events: none;
+  z-index: 20;
+}
+
+.cell[data-name][data-date]:hover::before {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top: 0;
+  border-bottom-color: rgba(17, 17, 17, 0.95);
+  margin-bottom: 0px;
 }
