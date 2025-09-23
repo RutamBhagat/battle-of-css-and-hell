@@ -82,6 +82,22 @@ export default function BirthdayInput({ initialText = "[]" }: Props) {
 
   const results = React.useMemo(() => computeDayMap(), [parsed, year]);
 
+  function initials(fullName: string): string {
+    const parts = fullName.trim().split(/\s+/);
+    const first = parts[0]?.[0] ?? "";
+    const last = parts.length > 1 ? parts[parts.length - 1][0] : "";
+    return (first + last).toUpperCase();
+  }
+
+  function nameColorIndex(name: string): number {
+    // Deterministic hash to spread across 5 colors (stable across renders)
+    let h = 0;
+    for (let i = 0; i < name.length; i++) {
+      h = (h * 31 + name.charCodeAt(i)) >>> 0;
+    }
+    return h % 5; // 0..4
+  }
+
   return (
     <main className="container">
       <section className="field">
@@ -128,12 +144,38 @@ export default function BirthdayInput({ initialText = "[]" }: Props) {
 
       <section className="calendar">
         {(["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"] as const).map(
-          (day) => (
-            <div key={day} className="day-card">
-              <div className="day-header day-header-right">{day.slice(0, 3).toUpperCase()}</div>
-              <div className="day-body day-empty" aria-label={`${day} empty`}></div>
-            </div>
-          ),
+          (day) => {
+            const people = results[day] ?? [];
+            const count = people.length;
+            const cols = Math.max(1, Math.ceil(Math.sqrt(Math.max(1, count))));
+            const total = cols * cols;
+            return (
+              <div key={day} className="day-card">
+                <div className="day-header day-header-right">{day.slice(0, 3).toUpperCase()}</div>
+                <div className="day-body">
+                  <div className="day-grid" style={{ gridTemplateColumns: `repeat(${cols}, 1fr)` }}>
+                    {Array.from({ length: total }).map((_, i) => {
+                      if (i < count) {
+                        const name = people[i];
+                        const idx = nameColorIndex(name);
+                        return (
+                          <div
+                            key={i}
+                            className={`cell color-${idx}`}
+                            title={name}
+                            aria-label={name}
+                          >
+                            {initials(name)}
+                          </div>
+                        );
+                      }
+                      return <div key={i} className="cell empty" aria-hidden="true" />;
+                    })}
+                  </div>
+                </div>
+              </div>
+            );
+          },
         )}
       </section>
     </main>
