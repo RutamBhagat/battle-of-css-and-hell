@@ -170,38 +170,6 @@ export default function BirthdayInput({ initialText }: Props) {
   return (
     <main className="container">
 
-      <section className="field">
-        <label htmlFor="json-input" className="label">
-          {error ? (
-            <div className="error">Birthdays ({error})</div>
-          ) : (
-            <span>Birthdays (JSON)</span>
-          )}
-        </label>
-        <div className="textarea-frame">
-          <div className="editor-wrap" {...getEditorRootProps()}>
-            <input {...getEditorInputProps()} />
-            <Editor
-              height="40vh"
-              defaultLanguage="json"
-              language="json"
-              value={text}
-              onChange={(val) => setText(val ?? "")}
-              options={{
-                minimap: { enabled: false },
-                fontSize: 14,
-                lineNumbers: "on",
-                scrollBeyondLastLine: false,
-                wordWrap: "on",
-              }}
-            />
-            <div className={`drop-overlay${isEditorDragActive ? " active" : ""}`}>
-              Drop JSON to load
-            </div>
-          </div>
-        </div>
-      </section>
-
       <section className="calendar">
         <div className="day-card">
           <div className="day-header day-header-right">YEAR</div>
@@ -309,6 +277,31 @@ export default function BirthdayInput({ initialText }: Props) {
             </div>
           );
         })}
+      </section>
+
+      <section className="field">
+        <div className="textarea-frame">
+          <div className="editor-wrap" {...getEditorRootProps()}>
+            <input {...getEditorInputProps()} />
+            <Editor
+              height="40vh"
+              defaultLanguage="json"
+              language="json"
+              value={text}
+              onChange={(val) => setText(val ?? "")}
+              options={{
+                minimap: { enabled: false },
+                fontSize: 14,
+                lineNumbers: "on",
+                scrollBeyondLastLine: false,
+                wordWrap: "on",
+              }}
+            />
+            <div className={`drop-overlay${isEditorDragActive ? " active" : ""}`}>
+              Drop JSON to load
+            </div>
+          </div>
+        </div>
       </section>
     </main>
   );
