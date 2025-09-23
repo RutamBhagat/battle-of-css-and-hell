@@ -115,10 +115,6 @@ body {
 }
 
 .day-card {
-  border: 1px solid #d7d7d7;
-  border-radius: 4px 4px 0 0;
-  background: #fff;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
 }
@@ -131,10 +127,13 @@ body {
   letter-spacing: 0.04em;
   text-transform: uppercase;
   padding: 6px 8px;
+  border-radius: 4px 4px 0 0;
 }
 
 .day-body {
   background: #f3f5f7;
+  border: 1px solid #d7d7d7;
+  border-top: none;
   aspect-ratio: 1 / 1; /* square */
   display: flex;
 }
