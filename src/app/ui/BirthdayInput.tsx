@@ -1,15 +1,10 @@
 "use client";
 
-import {
-  ChevronDown,
-  ChevronLeft,
-  ChevronRight,
-  ChevronUp,
-  Frown,
-} from "lucide-react";
+import { ChevronDown, ChevronUp, Frown } from "lucide-react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 import Editor from "@monaco-editor/react";
-import React from "react";
+// import React from "react";
 import { useDropzone } from "react-dropzone";
 
 type Props = {
@@ -25,20 +20,20 @@ function getYearOptions(): number[] {
 }
 
 export default function BirthdayInput({ initialText }: Props) {
-  const years = React.useMemo(() => getYearOptions(), []);
+  const years = useMemo(() => getYearOptions(), []);
   const defaultYear = years[0];
-  const [year, setYear] = React.useState<number>(defaultYear);
+  const [year, setYear] = useState<number>(defaultYear);
   const minYear = years[years.length - 1];
   const maxYear = years[0];
-  const clampYear = React.useCallback(
+  const clampYear = useCallback(
     (y: number) => Math.min(maxYear, Math.max(minYear, y)),
-    [minYear, maxYear],
+    [minYear, maxYear]
   );
-  const [text, setText] = React.useState<string>(initialText ?? "[]");
-  const [error, setError] = React.useState<string | null>(null);
+  const [text, setText] = useState<string>(initialText ?? "[]");
+  const [error, setError] = useState<string | null>(null);
 
   // Drag & drop: accept a single .json file and load its contents
-  const onDrop = React.useCallback((acceptedFiles: File[]) => {
+  const onDrop = useCallback((acceptedFiles: File[]) => {
     const file = acceptedFiles?.[0];
     if (!file) return;
     const reader = new FileReader();
@@ -62,7 +57,7 @@ export default function BirthdayInput({ initialText }: Props) {
     noKeyboard: true,
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (initialText == null) {
       (async () => {
         try {
@@ -80,7 +75,7 @@ export default function BirthdayInput({ initialText }: Props) {
   type Person = { name: string; birthday: string };
   type DayMap = Record<string, Person[]>;
 
-  const parsed: Person[] = React.useMemo(() => {
+  const parsed: Person[] = useMemo(() => {
     try {
       setError(null);
       const raw = JSON.parse(text);
@@ -122,7 +117,9 @@ export default function BirthdayInput({ initialText }: Props) {
       "Friday",
       "Saturday",
     ];
-    const map: DayMap = Object.fromEntries(labels.map((l) => [l, [] as Person[]]));
+    const map: DayMap = Object.fromEntries(
+      labels.map((l) => [l, [] as Person[]])
+    );
 
     // Sort youngest to oldest (later birth year first)
     const sorted = [...parsed].sort((a, b) => {
@@ -149,7 +146,7 @@ export default function BirthdayInput({ initialText }: Props) {
     return map;
   }
 
-  const results = React.useMemo(() => computeDayMap(), [parsed, year]);
+  const results = useMemo(() => computeDayMap(), [parsed, year]);
 
   function initials(fullName: string): string {
     const parts = fullName.trim().split(/\s+/);
@@ -158,17 +155,8 @@ export default function BirthdayInput({ initialText }: Props) {
     return (first + last).toUpperCase();
   }
 
-  function nameColorIndex(name: string): number {
-    // Deterministic hash to spread across 5 colors (stable across renders)
-    let h = 0;
-    for (let i = 0; i < name.length; i++) {
-      h = (h * 31 + name.charCodeAt(i)) >>> 0;
-    }
-    return h % 5; // 0..4
-  }
-
   // Global arrow key hotkeys for year (unless typing in inputs/editors)
-  React.useEffect(() => {
+  useEffect(() => {
     function onKeyDown(e: KeyboardEvent) {
       const target = e.target as HTMLElement | null;
       const tag = (target?.tagName || "").toLowerCase();
@@ -192,7 +180,6 @@ export default function BirthdayInput({ initialText }: Props) {
 
   return (
     <main className="container">
-
       <section className="calendar">
         <div className="day-card">
           <div className="day-header day-header-right">YEAR</div>
@@ -329,7 +316,9 @@ export default function BirthdayInput({ initialText }: Props) {
                 wordWrap: "on",
               }}
             />
-            <div className={`drop-overlay${isEditorDragActive ? " active" : ""}`}>
+            <div
+              className={`drop-overlay${isEditorDragActive ? " active" : ""}`}
+            >
               Drop JSON to load
             </div>
           </div>
