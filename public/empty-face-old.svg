@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <circle cx="70" cy="90" r="12" fill="#9CA8AF"/>
+  <circle cx="130" cy="90" r="12" fill="#9CA8AF"/>
+  <!-- Tilde (~) mouth: single gentle S-curve -->
+  <path d="M60 130 Q80 118 100 130 T140 130" fill="none" stroke="#9CA8AF" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
