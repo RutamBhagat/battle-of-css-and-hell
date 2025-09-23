@@ -45,7 +45,10 @@ export default function BirthdayInput({ initialText }: Props) {
       const raw = JSON.parse(text);
       if (!Array.isArray(raw)) return [];
       return raw
-        .filter((it: any) => it && typeof it.name === "string" && typeof it.birthday === "string")
+        .filter(
+          (it: any) =>
+            it && typeof it.name === "string" && typeof it.birthday === "string"
+        )
         .map((it: any) => ({ name: it.name, birthday: it.birthday }));
     } catch (e: any) {
       setError("Invalid JSON");
@@ -53,7 +56,9 @@ export default function BirthdayInput({ initialText }: Props) {
     }
   }, [text]);
 
-  function parseMonthDay(birthday: string): { month: number; day: number; birthYear: number } | null {
+  function parseMonthDay(
+    birthday: string
+  ): { month: number; day: number; birthYear: number } | null {
     // Supports "YYYY-MM-DD" and "MM/DD/YYYY"
     if (/^\d{4}-\d{2}-\d{2}$/.test(birthday)) {
       const [y, m, d] = birthday.split("-").map((s) => Number(s));
@@ -67,7 +72,15 @@ export default function BirthdayInput({ initialText }: Props) {
   }
 
   function computeDayMap(): DayMap {
-    const labels = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const labels = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
     const map: DayMap = Object.fromEntries(labels.map((l) => [l, []]));
 
     // Sort youngest to oldest (later birth year first)
@@ -116,7 +129,9 @@ export default function BirthdayInput({ initialText }: Props) {
   return (
     <main className="container">
       <section className="field">
-        <label htmlFor="year-select" className="label">Year</label>
+        <label htmlFor="year-select" className="label">
+          Year
+        </label>
         <select
           id="year-select"
           className="control select"
@@ -132,7 +147,13 @@ export default function BirthdayInput({ initialText }: Props) {
       </section>
 
       <section className="field">
-        <label htmlFor="json-input" className="label">Birthdays (JSON)</label>
+        <label htmlFor="json-input" className="label">
+          {error ? (
+            <div className="error">Birthdays ({error})</div>
+          ) : (
+            <span>Birthdays (JSON)</span>
+          )}
+        </label>
         <div className="textarea-frame">
           <textarea
             id="json-input"
@@ -142,49 +163,70 @@ export default function BirthdayInput({ initialText }: Props) {
             rows={16}
           />
         </div>
-        {error ? <div className="error">Parse Error: {error}</div> : null}
       </section>
 
       <section className="calendar">
-        {(["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"] as const).map(
-          (day) => {
-            const people = results[day] ?? [];
-            const count = people.length;
-            const cols = Math.max(1, Math.ceil(Math.sqrt(Math.max(1, count))));
-            const total = cols * cols;
-            // Assign colors: prefer stable hash per name, but keep colors unique within the day.
-            return (
-              <div key={day} className="day-card">
-                <div className="day-header day-header-right">{day.slice(0, 3).toUpperCase()}</div>
-                {count === 0 ? (
-                  <div className="day-body day-empty-state" aria-label={`${day} empty`} />
-                ) : (
-                  <div className="day-body">
-                    <div className="day-grid" style={{ gridTemplateColumns: `repeat(${cols}, 1fr)` }}>
-                      {Array.from({ length: total }).map((_, i) => {
-                        if (i < count) {
-                          const name = people[i];
-                          const idx = i % 5; // position-based color: 0..4 cycling left-to-right
-                          return (
-                            <div
-                              key={i}
-                              className={`cell color-${idx}`}
-                              title={name}
-                              aria-label={name}
-                            >
-                              {initials(name)}
-                            </div>
-                          );
-                        }
-                        return <div key={i} className="cell empty" aria-hidden="true" />;
-                      })}
-                    </div>
-                  </div>
-                )}
+        {(
+          [
+            "Sunday",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+          ] as const
+        ).map((day) => {
+          const people = results[day] ?? [];
+          const count = people.length;
+          const cols = Math.max(1, Math.ceil(Math.sqrt(Math.max(1, count))));
+          const total = cols * cols;
+          // Assign colors: prefer stable hash per name, but keep colors unique within the day.
+          return (
+            <div key={day} className="day-card">
+              <div className="day-header day-header-right">
+                {day.slice(0, 3).toUpperCase()}
               </div>
-            );
-          },
-        )}
+              {count === 0 ? (
+                <div
+                  className="day-body day-empty-state"
+                  aria-label={`${day} empty`}
+                />
+              ) : (
+                <div className="day-body">
+                  <div
+                    className="day-grid"
+                    style={{ gridTemplateColumns: `repeat(${cols}, 1fr)` }}
+                  >
+                    {Array.from({ length: total }).map((_, i) => {
+                      if (i < count) {
+                        const name = people[i];
+                        const idx = i % 5; // position-based color: 0..4 cycling left-to-right
+                        return (
+                          <div
+                            key={i}
+                            className={`cell color-${idx}`}
+                            title={name}
+                            aria-label={name}
+                          >
+                            {initials(name)}
+                          </div>
+                        );
+                      }
+                      return (
+                        <div
+                          key={i}
+                          className="cell empty"
+                          aria-hidden="true"
+                        />
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+            </div>
+          );
+        })}
       </section>
     </main>
   );
