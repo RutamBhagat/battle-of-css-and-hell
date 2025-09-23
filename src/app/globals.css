@@ -156,8 +156,13 @@ body {
 }
 
 .editor-wrap {
-  height: 75vh;
+  height: 60vh;
   position: relative;
+}
+
+/* Extra spacing above the JSON editor section */
+.editor-section {
+  margin-top: 1.5rem;
 }
 
 .dropzone-square {

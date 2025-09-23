@@ -311,12 +311,12 @@ export default function BirthdayInput({ initialText }: Props) {
         })}
       </section>
 
-      <section className="field">
+      <section className="field editor-section">
         <div className="textarea-frame">
           <div className="editor-wrap" {...getEditorRootProps()}>
             <input {...getEditorInputProps()} />
             <Editor
-              height="75vh"
+              height="60vh"
               defaultLanguage="json"
               language="json"
               value={text}
