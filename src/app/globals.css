@@ -1,5 +1,10 @@
 :root {
   color-scheme: light dark;
+  --c-slate: #545D79;
+  --c-green: #8AB721;
+  --c-pink: #C77D99;
+  --c-blue: #78CAE3;
+  --c-red: #E64A33;
 }
 
 * {
@@ -107,4 +112,43 @@ body {
 
 .day-values {
   flex: 1;
+}
+
+/* Calendar preview (simple, empty) */
+.calendar {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 12px;
+}
+
+.day-card {
+  border: 1px solid #d7d7d7;
+  border-radius: 8px;
+  background: #fff;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.day-header {
+  background: var(--c-slate);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 6px 8px;
+}
+
+.day-body {
+  background: #f3f5f7;
+  aspect-ratio: 1 / 1; /* square */
+}
+
+.day-body.day-empty {
+  background: #f6f7f9;
+}
+.day-header-right {
+  text-align: right;
 }

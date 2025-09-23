@@ -125,6 +125,17 @@ export default function BirthdayInput({ initialText = "[]" }: Props) {
           ),
         )}
       </section>
+
+      <section className="calendar">
+        {(["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"] as const).map(
+          (day) => (
+            <div key={day} className="day-card">
+              <div className="day-header day-header-right">{day.slice(0, 3).toUpperCase()}</div>
+              <div className="day-body day-empty" aria-label={`${day} empty`}></div>
+            </div>
+          ),
+        )}
+      </section>
     </main>
   );
 }
