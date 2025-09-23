@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronDown, ChevronLeft, ChevronRight, Frown } from "lucide-react";
 
 import React from "react";
 
@@ -225,7 +225,9 @@ export default function BirthdayInput({ initialText }: Props) {
                 <div
                   className="day-body day-empty-state"
                   aria-label={`${day} empty`}
-                />
+                >
+                  <Frown size={64} aria-hidden />
+                </div>
               ) : (
                 <div className="day-body">
                   <div

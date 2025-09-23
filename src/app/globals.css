@@ -214,10 +214,9 @@ body {
 
 .day-empty-state {
   background-color: #dee4e6;
-  background-image: url("/empty-face.svg");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 50%;
+  align-items: center;
+  justify-content: center;
+  color: #667b86;
 }
 
 .cell {
