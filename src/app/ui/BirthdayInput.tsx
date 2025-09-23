@@ -130,18 +130,6 @@ export default function BirthdayInput({ initialText = "[]" }: Props) {
         {error ? <div className="error">Parse Error: {error}</div> : null}
       </section>
 
-      <section className="results">
-        <div className="results-title">Results</div>
-        {(["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"] as const).map(
-          (day) => (
-            <div key={day} className="result-line">
-              <span className="day-label">{day}</span>
-              <span className="day-values">{results[day].join(", ")}</span>
-            </div>
-          ),
-        )}
-      </section>
-
       <section className="calendar">
         {(["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"] as const).map(
           (day) => {
