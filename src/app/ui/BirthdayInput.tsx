@@ -100,7 +100,6 @@ export default function BirthdayInput({ initialText = "[]" }: Props) {
       </section>
 
       <section>
-        <label htmlFor="json-input">Birthdays (JSON)</label>
         <textarea
           id="json-input"
           value={text}
@@ -111,15 +110,10 @@ export default function BirthdayInput({ initialText = "[]" }: Props) {
       </section>
 
       <section>
-        <div>Debug</div>
-        <div>
-          Selected Year: <strong>{year}</strong>
-        </div>
         {error ? <div>Parse Error: {error}</div> : null}
       </section>
 
       <section>
-        <div>Results</div>
         {(["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"] as const).map(
           (day) => (
             <div key={day}>
