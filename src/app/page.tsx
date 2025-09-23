@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { z } from "zod";
+import moment from "moment";
 import YearSelector from "./ui/birthday/YearSelector";
 import DayCard from "./ui/birthday/DayCard";
 import EditorSection from "./ui/birthday/EditorSection";
@@ -34,22 +36,42 @@ export default function Home() {
     })();
   }, []);
 
+  const PersonSchema = useMemo(
+    () =>
+      z.object({
+        name: z.string().min(1),
+        birthday: z
+          .string()
+          .refine(
+            (s) =>
+              moment(
+                s,
+                ["YYYY-MM-DD", "MM/DD/YYYY", "M/D/YYYY", "DD-MM-YYYY", "D-M-YYYY"],
+                true,
+              ).isValid(),
+            "Invalid birthday format",
+          ),
+      }),
+    [],
+  );
+
+  const PeopleSchema = useMemo(() => z.array(PersonSchema), [PersonSchema]);
+
   const parsed: Person[] = useMemo(() => {
     try {
       setError(null);
       const raw = JSON.parse(text);
-      if (!Array.isArray(raw)) return [];
-      return raw
-        .filter(
-          (it: any) =>
-            it && typeof it.name === "string" && typeof it.birthday === "string",
-        )
-        .map((it: any) => ({ name: it.name, birthday: it.birthday }));
+      const result = PeopleSchema.safeParse(raw);
+      if (!result.success) {
+        setError("Invalid JSON");
+        return [];
+      }
+      return result.data;
     } catch {
       setError("Invalid JSON");
       return [];
     }
-  }, [text]);
+  }, [text, PeopleSchema]);
 
   const results = useMemo(() => computeDayMap(parsed, year), [parsed, year]);
 
