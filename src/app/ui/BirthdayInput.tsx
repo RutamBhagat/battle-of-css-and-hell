@@ -141,27 +141,31 @@ export default function BirthdayInput({ initialText = "[]" }: Props) {
             return (
               <div key={day} className="day-card">
                 <div className="day-header day-header-right">{day.slice(0, 3).toUpperCase()}</div>
-                <div className="day-body">
-                  <div className="day-grid" style={{ gridTemplateColumns: `repeat(${cols}, 1fr)` }}>
-                    {Array.from({ length: total }).map((_, i) => {
-                      if (i < count) {
-                        const name = people[i];
-                        const idx = i % 5; // position-based color: 0..4 cycling left-to-right
-                        return (
-                          <div
-                            key={i}
-                            className={`cell color-${idx}`}
-                            title={name}
-                            aria-label={name}
-                          >
-                            {initials(name)}
-                          </div>
-                        );
-                      }
-                      return <div key={i} className="cell empty" aria-hidden="true" />;
-                    })}
+                {count === 0 ? (
+                  <div className="day-body day-empty-state" aria-label={`${day} empty`} />
+                ) : (
+                  <div className="day-body">
+                    <div className="day-grid" style={{ gridTemplateColumns: `repeat(${cols}, 1fr)` }}>
+                      {Array.from({ length: total }).map((_, i) => {
+                        if (i < count) {
+                          const name = people[i];
+                          const idx = i % 5; // position-based color: 0..4 cycling left-to-right
+                          return (
+                            <div
+                              key={i}
+                              className={`cell color-${idx}`}
+                              title={name}
+                              aria-label={name}
+                            >
+                              {initials(name)}
+                            </div>
+                          );
+                        }
+                        return <div key={i} className="cell empty" aria-hidden="true" />;
+                      })}
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
             );
           },

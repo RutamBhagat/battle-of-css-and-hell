@@ -149,6 +149,14 @@ body {
   background: #f6f7f9;
 }
 
+.day-empty-state {
+  background-color: #DEE4E6;
+  background-image: url('/empty-face.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 50%;
+}
+
 .cell {
   display: flex;
   align-items: center;
