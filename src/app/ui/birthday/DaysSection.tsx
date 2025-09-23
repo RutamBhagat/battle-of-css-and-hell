@@ -23,6 +23,10 @@ export default function DaysSection({ people, year }: Props) {
         const count = dayPeople.length;
         const cols = Math.max(1, Math.ceil(Math.sqrt(Math.max(1, count))));
         const total = cols * cols;
+        const placeholderKeys = Array.from(
+          { length: total - count },
+          (_, i) => `empty-${day}-${i}`,
+        );
         return (
           <div key={day} className="day-card">
             <div className="day-header day-header-right">
@@ -31,6 +35,7 @@ export default function DaysSection({ people, year }: Props) {
             {count === 0 ? (
               <div
                 className="day-body day-empty-state"
+                role="img"
                 aria-label={`${day} empty`}
               >
                 <Frown size={64} aria-hidden />
@@ -41,28 +46,26 @@ export default function DaysSection({ people, year }: Props) {
                   className="day-grid"
                   style={{ gridTemplateColumns: `repeat(${cols}, 1fr)` }}
                 >
-                  {Array.from({ length: total }).map((_, i) => {
-                    if (i < count) {
-                      const person = dayPeople[i];
-                      const name = person.name;
-                      const idx = i % 5;
-                      return (
-                        <div
-                          key={i}
-                          className={`cell color-${idx}`}
-                          title={`${name} — ${formatBirthday(person.birthday)}`}
-                          data-name={name}
-                          data-date={formatBirthday(person.birthday)}
-                          aria-label={name}
-                        >
-                          {initials(name)}
-                        </div>
-                      );
-                    }
+                  {dayPeople.map((person, idx) => {
+                    const name = person.name;
+                    const colorIdx = idx % 5;
                     return (
-                      <div key={i} className="cell empty" aria-hidden="true" />
+                      <div
+                        key={`${name}-${person.birthday}`}
+                        className={`cell color-${colorIdx}`}
+                        title={`${name} — ${formatBirthday(person.birthday)}`}
+                        data-name={name}
+                        data-date={formatBirthday(person.birthday)}
+                        role="img"
+                        aria-label={name}
+                      >
+                        {initials(name)}
+                      </div>
                     );
                   })}
+                  {placeholderKeys.map((k) => (
+                    <div key={k} className="cell empty" aria-hidden="true" />
+                  ))}
                 </div>
               </div>
             )}
