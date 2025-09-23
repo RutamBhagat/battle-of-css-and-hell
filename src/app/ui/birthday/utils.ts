@@ -30,15 +30,13 @@ export function formatBirthday(birthday: string): string {
 export function parseMonthDay(
   birthday: string,
 ): { month: number; day: number; birthYear: number } | null {
-  if (/^\d{4}-\d{2}-\d{2}$/.test(birthday)) {
-    const [y, m, d] = birthday.split("-").map((s) => Number(s));
-    return { month: m, day: d, birthYear: y };
-  }
-  if (/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(birthday)) {
-    const [m, d, y] = birthday.split("/").map((s) => Number(s));
-    return { month: m, day: d, birthYear: y };
-  }
-  return null;
+  const m = moment(
+    birthday,
+    ["YYYY-MM-DD", "MM/DD/YYYY", "M/D/YYYY", "DD-MM-YYYY", "D-M-YYYY"],
+    true,
+  );
+  if (!m.isValid()) return null;
+  return { month: m.month() + 1, day: m.date(), birthYear: m.year() };
 }
 
 export function computeDayMap(parsed: Person[], year: number): DayMap {
@@ -73,4 +71,3 @@ export function initials(fullName: string): string {
   const last = parts.length > 1 ? parts[parts.length - 1][0] : "";
   return (first + last).toUpperCase();
 }
-

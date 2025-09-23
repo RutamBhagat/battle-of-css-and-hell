@@ -44,6 +44,7 @@ export default function BirthdayInput({ initialText }: Props) {
     };
     reader.readAsText(file);
   }, []);
+
   // Make the whole editor area a drop target (drag-only, no click)
   const {
     getRootProps: getEditorRootProps,
@@ -93,7 +94,11 @@ export default function BirthdayInput({ initialText }: Props) {
   }, [text]);
 
   function formatBirthday(birthday: string): string {
-    const m = moment(birthday, ["YYYY-MM-DD", "MM/DD/YYYY", "DD-MM-YYYY"], true);
+    const m = moment(
+      birthday,
+      ["YYYY-MM-DD", "MM/DD/YYYY", "DD-MM-YYYY"],
+      true
+    );
     if (!m.isValid()) return birthday;
     return m.format("DD-MM-YYYY");
   }
@@ -279,7 +284,9 @@ export default function BirthdayInput({ initialText }: Props) {
                           <div
                             key={i}
                             className={`cell color-${idx}`}
-                            title={`${name} — ${formatBirthday(person.birthday)}`}
+                            title={`${name} — ${formatBirthday(
+                              person.birthday
+                            )}`}
                             data-name={name}
                             data-date={formatBirthday(person.birthday)}
                             aria-label={name}
