@@ -1,9 +1,15 @@
 "use client";
 
-import { ChevronDown, ChevronLeft, ChevronRight, Frown } from "lucide-react";
+import {
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  ChevronUp,
+  Frown,
+} from "lucide-react";
 
-import React from "react";
 import Editor from "@monaco-editor/react";
+import React from "react";
 import { useDropzone } from "react-dropzone";
 
 type Props = {
@@ -163,53 +169,6 @@ export default function BirthdayInput({ initialText }: Props) {
 
   return (
     <main className="container">
-      <section className="field">
-        <label htmlFor="year-select" className="label">
-          Year
-        </label>
-        <div className="year-row">
-          <div className="year-controls" role="group" aria-label="Choose year">
-            <button
-              type="button"
-              className="year-button"
-              onClick={() => setYear((y) => clampYear(y - 1))}
-              disabled={year <= minYear}
-              aria-label="Previous year"
-            >
-              <ChevronLeft size={16} aria-hidden />
-            </button>
-            <div className="year-select-wrap">
-              <select
-                id="year-select"
-                className="control select year-select"
-                value={year}
-                onChange={(e) => setYear(Number(e.target.value))}
-                aria-label="Year"
-              >
-                {years.map((y) => (
-                  <option key={y} value={y}>
-                    {y}
-                  </option>
-                ))}
-              </select>
-              <span className="select-icon" aria-hidden>
-                <ChevronDown size={16} />
-              </span>
-            </div>
-            <button
-              type="button"
-              className="year-button"
-              onClick={() => setYear((y) => clampYear(y + 1))}
-              disabled={year >= maxYear}
-              aria-label="Next year"
-            >
-              <ChevronRight size={16} aria-hidden />
-            </button>
-          </div>
-
-          {null}
-        </div>
-      </section>
 
       <section className="field">
         <label htmlFor="json-input" className="label">
@@ -244,6 +203,46 @@ export default function BirthdayInput({ initialText }: Props) {
       </section>
 
       <section className="calendar">
+        <div className="day-card">
+          <div className="day-header day-header-right">YEAR</div>
+          <div className="day-body year-body">
+            <button
+              type="button"
+              className="year-segment year-segment-button"
+              onClick={() => setYear((y) => clampYear(y + 1))}
+              disabled={year >= maxYear}
+              aria-label="Increase year"
+              title="Increase year"
+            >
+              <ChevronUp size={24} aria-hidden />
+            </button>
+            <div className="year-segment year-segment-select-wrap">
+              <select
+                id="year-select"
+                className="year-segment-select"
+                value={year}
+                onChange={(e) => setYear(Number(e.target.value))}
+                aria-label="Year"
+              >
+                {years.map((y) => (
+                  <option key={y} value={y}>
+                    {y}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <button
+              type="button"
+              className="year-segment year-segment-button"
+              onClick={() => setYear((y) => clampYear(y - 1))}
+              disabled={year <= minYear}
+              aria-label="Decrease year"
+              title="Decrease year"
+            >
+              <ChevronDown size={24} aria-hidden />
+            </button>
+          </div>
+        </div>
         {(
           [
             "Sunday",
