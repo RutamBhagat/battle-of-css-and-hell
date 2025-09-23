@@ -167,6 +167,29 @@ export default function BirthdayInput({ initialText }: Props) {
     return h % 5; // 0..4
   }
 
+  // Global arrow key hotkeys for year (unless typing in inputs/editors)
+  React.useEffect(() => {
+    function onKeyDown(e: KeyboardEvent) {
+      const target = e.target as HTMLElement | null;
+      const tag = (target?.tagName || "").toLowerCase();
+      const typing =
+        tag === "input" ||
+        tag === "textarea" ||
+        (target?.isContentEditable ?? false) ||
+        !!target?.closest?.(".monaco-editor");
+      if (typing) return;
+      if (e.key === "ArrowUp") {
+        e.preventDefault();
+        setYear((y) => clampYear(y + 1));
+      } else if (e.key === "ArrowDown") {
+        e.preventDefault();
+        setYear((y) => clampYear(y - 1));
+      }
+    }
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [clampYear]);
+
   return (
     <main className="container">
 
@@ -190,6 +213,15 @@ export default function BirthdayInput({ initialText }: Props) {
                 className="year-segment-select"
                 value={year}
                 onChange={(e) => setYear(Number(e.target.value))}
+                onKeyDown={(e) => {
+                  if (e.key === "ArrowUp") {
+                    e.preventDefault();
+                    setYear((y) => clampYear(y + 1));
+                  } else if (e.key === "ArrowDown") {
+                    e.preventDefault();
+                    setYear((y) => clampYear(y - 1));
+                  }
+                }}
                 aria-label="Year"
               >
                 {years.map((y) => (
