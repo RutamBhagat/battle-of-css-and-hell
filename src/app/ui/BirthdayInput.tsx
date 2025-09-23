@@ -102,13 +102,15 @@ export default function BirthdayInput({ initialText = "[]" }: Props) {
 
       <section className="field">
         <label htmlFor="json-input" className="label">Birthdays (JSON)</label>
-        <textarea
-          id="json-input"
-          className="control textarea"
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-          rows={16}
-        />
+        <div className="textarea-frame">
+          <textarea
+            id="json-input"
+            className="control textarea"
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+            rows={16}
+          />
+        </div>
         {error ? <div className="error">Parse Error: {error}</div> : null}
       </section>
 

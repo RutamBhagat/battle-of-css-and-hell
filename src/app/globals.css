@@ -58,9 +58,27 @@ body {
 .textarea {
   resize: vertical;
   min-height: 14rem;
+  border: 0;
+  border-radius: 0;
+  display: block;
+  width: 100%;
+}
+
+.textarea-frame {
+  border: 1px solid #c9c9c9;
   border-radius: 8px;
-  background-clip: padding-box;
-  overflow: auto;
+  background: #fff;
+  overflow: hidden; /* ensure rounded corners around scrollbar */
+}
+
+/* Remove native focus ring on inner textarea and style the frame instead */
+.textarea:focus {
+  outline: none;
+}
+
+.textarea-frame:focus-within {
+  border-color: #000;
+  box-shadow: inset 0 0 0 1px #000;
 }
 
 .error {
