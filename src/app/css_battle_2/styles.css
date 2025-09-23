@@ -30,12 +30,16 @@ body {
 
 /* halves */
 .top {
-  clip-path: inset(0 0 50% 0);
+  clip-path: inset(0 0 49.5% 0);
 }
 .bottom {
-  clip-path: inset(50% 0 0 0);
+  clip-path: inset(49.5% 0 0 0);
 }
 
 /* control stacking */
-.red.top { z-index: 2; }
-.yellow.bottom { z-index: 2; }
+.red.top {
+  z-index: 2;
+}
+.yellow.bottom {
+  z-index: 2;
+}
