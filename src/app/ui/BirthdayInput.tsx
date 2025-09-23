@@ -83,11 +83,12 @@ export default function BirthdayInput({ initialText = "[]" }: Props) {
   const results = React.useMemo(() => computeDayMap(), [parsed, year]);
 
   return (
-    <main>
-      <section>
-        <label htmlFor="year-select">Year</label>
+    <main className="container">
+      <section className="field">
+        <label htmlFor="year-select" className="label">Year</label>
         <select
           id="year-select"
+          className="control"
           value={year}
           onChange={(e) => setYear(Number(e.target.value))}
         >
@@ -99,25 +100,25 @@ export default function BirthdayInput({ initialText = "[]" }: Props) {
         </select>
       </section>
 
-      <section>
+      <section className="field">
+        <label htmlFor="json-input" className="label">Birthdays (JSON)</label>
         <textarea
           id="json-input"
+          className="control textarea"
           value={text}
           onChange={(e) => setText(e.target.value)}
           rows={16}
-          cols={80}
         />
+        {error ? <div className="error">Parse Error: {error}</div> : null}
       </section>
 
-      <section>
-        {error ? <div>Parse Error: {error}</div> : null}
-      </section>
-
-      <section>
+      <section className="results">
+        <div className="results-title">Results</div>
         {(["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"] as const).map(
           (day) => (
-            <div key={day}>
-              {day} = {results[day].join(", ")}
+            <div key={day} className="result-line">
+              <span className="day-label">{day}</span>
+              <span className="day-values">{results[day].join(", ")}</span>
             </div>
           ),
         )}
