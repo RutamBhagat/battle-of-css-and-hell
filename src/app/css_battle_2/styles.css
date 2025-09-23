@@ -20,10 +20,25 @@ body {
 
 .yellow {
   background: #f4da64;
-  transform: translateX(-50px); /* left of center */
+  transform: translateX(-50px);
 }
 
 .red {
   background: #e25c57;
-  transform: translateX(50px); /* right of center */
+  transform: translateX(50px);
+}
+
+.top {
+  clip-path: inset(0 0 50% 0);
+}
+
+.bottom {
+  clip-path: inset(50% 0 0 0);
+}
+
+.red.top {
+  z-index: 2;
+}
+.yellow.bottom {
+  z-index: 2;
 }
