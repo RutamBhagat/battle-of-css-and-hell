@@ -4,9 +4,8 @@ import { ChevronDown, ChevronUp, Frown } from "lucide-react";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 import Editor from "@monaco-editor/react";
-// import React from "react";
-import { useDropzone } from "react-dropzone";
 import moment from "moment";
+import { useDropzone } from "react-dropzone";
 
 type Props = {
   initialText?: string;
