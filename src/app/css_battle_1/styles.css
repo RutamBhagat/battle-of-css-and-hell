@@ -1,10 +1,15 @@
+:root {
+  --battle-bg: #f5d6b4;
+  --spiral-color: #d86f45;
+}
+
 .battle-canvas {
   margin: 0;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #F5D6B4;
+  background-color: var(--battle-bg);
   min-height: 100vh;
 }
 
