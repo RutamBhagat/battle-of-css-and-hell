@@ -1,10 +1,10 @@
 "use client";
 
-import { useMemo, useState, useEffect } from "react";
-import YearSelector from "./ui/birthday/YearSelector";
+import { useEffect, useMemo, useState } from "react";
 import DaysSection from "./ui/birthday/DaysSection";
 import JsonInput from "./ui/birthday/JsonInput";
 import { getYearOptions, type Person } from "./ui/birthday/utils";
+import YearSelector from "./ui/birthday/YearSelector";
 
 export default function Home() {
   const years = useMemo(() => getYearOptions(), []);
@@ -15,7 +15,6 @@ export default function Home() {
 
   const [people, setPeople] = useState<Person[]>([]);
 
-  // Global arrow key hotkeys for year (unless typing in inputs/editors)
   useEffect(() => {
     function onKeyDown(e: KeyboardEvent) {
       const target = e.target as HTMLElement | null;

@@ -41,7 +41,9 @@ export function parseMonthDay(
 
 export function computeDayMap(parsed: Person[], year: number): DayMap {
   const labels = [...DayLabels];
-  const map: DayMap = Object.fromEntries(labels.map((l) => [l, [] as Person[]]));
+  const map: DayMap = Object.fromEntries(
+    labels.map((l) => [l, [] as Person[]]),
+  );
 
   const sorted = [...parsed].sort((a, b) => {
     const pa = parseMonthDay(a.birthday);

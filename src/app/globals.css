@@ -8,8 +8,16 @@
 }
 
 body {
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell,
-    "Helvetica Neue", Arial, sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    Roboto,
+    Ubuntu,
+    Cantarell,
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
   line-height: 1.5;
   background: #eaf0f2;
 }
@@ -397,7 +405,7 @@ body {
 
 /* Simple tooltip for cells */
 .cell[data-name][data-date]:hover::after {
-  content: attr(data-name) "\A" attr(data-date);
+  content: attr(data-name) "A" attr(data-date);
   position: absolute;
   bottom: 100%;
   left: 50%;

@@ -1,11 +1,10 @@
 "use client";
 
+import moment from "moment";
 import { useEffect, useMemo, useState } from "react";
-
+import { z } from "zod";
 import JsonEditor from "./JsonEditor";
 import type { Person } from "./utils";
-import moment from "moment";
-import { z } from "zod";
 
 type Props = {
   onPeopleChange: (people: Person[]) => void;
@@ -14,7 +13,7 @@ type Props = {
 
 export default function JsonInput({ onPeopleChange, initialText }: Props) {
   const [text, setText] = useState<string>(initialText ?? "[]");
-  const [error, setError] = useState<string | null>(null);
+  const [_error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (initialText != null) return;
@@ -47,12 +46,12 @@ export default function JsonInput({ onPeopleChange, initialText }: Props) {
                   "DD-MM-YYYY",
                   "D-M-YYYY",
                 ],
-                true
+                true,
               ).isValid(),
-            "Invalid birthday format"
+            "Invalid birthday format",
           ),
       }),
-    []
+    [],
   );
 
   const PeopleSchema = useMemo(() => z.array(PersonSchema), [PersonSchema]);

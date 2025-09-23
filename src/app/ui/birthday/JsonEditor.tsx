@@ -10,16 +10,19 @@ type Props = {
 };
 
 export default function JsonEditor({ text, setText }: Props) {
-  const onDrop = useCallback((acceptedFiles: File[]) => {
-    const file = acceptedFiles?.[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = () => {
-      const textContent = String(reader.result ?? "");
-      setText(textContent);
-    };
-    reader.readAsText(file);
-  }, [setText]);
+  const onDrop = useCallback(
+    (acceptedFiles: File[]) => {
+      const file = acceptedFiles?.[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        const textContent = String(reader.result ?? "");
+        setText(textContent);
+      };
+      reader.readAsText(file);
+    },
+    [setText],
+  );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     accept: { "application/json": [".json"] },
@@ -48,10 +51,11 @@ export default function JsonEditor({ text, setText }: Props) {
               wordWrap: "on",
             }}
           />
-          <div className={`drop-overlay${isDragActive ? " active" : ""}`}>Drop JSON to load</div>
+          <div className={`drop-overlay${isDragActive ? " active" : ""}`}>
+            Drop JSON to load
+          </div>
         </div>
       </div>
     </section>
   );
 }
-

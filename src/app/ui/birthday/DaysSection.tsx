@@ -2,8 +2,8 @@
 
 import { Frown } from "lucide-react";
 import {
-  DayLabels,
   computeDayMap,
+  DayLabels,
   formatBirthday,
   initials,
   type Person,
@@ -29,7 +29,10 @@ export default function DaysSection({ people, year }: Props) {
               {day.slice(0, 3).toUpperCase()}
             </div>
             {count === 0 ? (
-              <div className="day-body day-empty-state" aria-label={`${day} empty`}>
+              <div
+                className="day-body day-empty-state"
+                aria-label={`${day} empty`}
+              >
                 <Frown size={64} aria-hidden />
               </div>
             ) : (
@@ -56,7 +59,9 @@ export default function DaysSection({ people, year }: Props) {
                         </div>
                       );
                     }
-                    return <div key={i} className="cell empty" aria-hidden="true" />;
+                    return (
+                      <div key={i} className="cell empty" aria-hidden="true" />
+                    );
                   })}
                 </div>
               </div>

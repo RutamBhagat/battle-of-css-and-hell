@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import YearSelector from "./birthday/YearSelector";
 import DaysSection from "./birthday/DaysSection";
 import JsonInput from "./birthday/JsonInput";
 import { getYearOptions, type Person } from "./birthday/utils";
+import YearSelector from "./birthday/YearSelector";
 
 type Props = { initialText?: string };
 
