@@ -3,6 +3,8 @@
 import { ChevronDown, ChevronLeft, ChevronRight, Frown } from "lucide-react";
 
 import React from "react";
+import Editor from "@monaco-editor/react";
+import { useDropzone } from "react-dropzone";
 
 type Props = {
   initialText?: string;
@@ -28,6 +30,31 @@ export default function BirthdayInput({ initialText }: Props) {
   );
   const [text, setText] = React.useState<string>(initialText ?? "[]");
   const [error, setError] = React.useState<string | null>(null);
+
+  // Drag & drop: accept a single .json file and load its contents
+  const onDrop = React.useCallback((acceptedFiles: File[]) => {
+    const file = acceptedFiles?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onerror = () => setError("Failed to read file");
+    reader.onload = () => {
+      const textContent = String(reader.result ?? "");
+      setText(textContent);
+    };
+    reader.readAsText(file);
+  }, []);
+  // Make the whole editor area a drop target (drag-only, no click)
+  const {
+    getRootProps: getEditorRootProps,
+    getInputProps: getEditorInputProps,
+    isDragActive: isEditorDragActive,
+  } = useDropzone({
+    accept: { "application/json": [".json"] },
+    maxFiles: 1,
+    onDrop,
+    noClick: true,
+    noKeyboard: true,
+  });
 
   React.useEffect(() => {
     if (initialText == null) {
@@ -140,43 +167,47 @@ export default function BirthdayInput({ initialText }: Props) {
         <label htmlFor="year-select" className="label">
           Year
         </label>
-        <div className="year-controls" role="group" aria-label="Choose year">
-          <button
-            type="button"
-            className="year-button"
-            onClick={() => setYear((y) => clampYear(y - 1))}
-            disabled={year <= minYear}
-            aria-label="Previous year"
-          >
-            <ChevronLeft size={16} aria-hidden />
-          </button>
-          <div className="year-select-wrap">
-            <select
-              id="year-select"
-              className="control select year-select"
-              value={year}
-              onChange={(e) => setYear(Number(e.target.value))}
-              aria-label="Year"
+        <div className="year-row">
+          <div className="year-controls" role="group" aria-label="Choose year">
+            <button
+              type="button"
+              className="year-button"
+              onClick={() => setYear((y) => clampYear(y - 1))}
+              disabled={year <= minYear}
+              aria-label="Previous year"
             >
-              {years.map((y) => (
-                <option key={y} value={y}>
-                  {y}
-                </option>
-              ))}
-            </select>
-            <span className="select-icon" aria-hidden>
-              <ChevronDown size={16} />
-            </span>
+              <ChevronLeft size={16} aria-hidden />
+            </button>
+            <div className="year-select-wrap">
+              <select
+                id="year-select"
+                className="control select year-select"
+                value={year}
+                onChange={(e) => setYear(Number(e.target.value))}
+                aria-label="Year"
+              >
+                {years.map((y) => (
+                  <option key={y} value={y}>
+                    {y}
+                  </option>
+                ))}
+              </select>
+              <span className="select-icon" aria-hidden>
+                <ChevronDown size={16} />
+              </span>
+            </div>
+            <button
+              type="button"
+              className="year-button"
+              onClick={() => setYear((y) => clampYear(y + 1))}
+              disabled={year >= maxYear}
+              aria-label="Next year"
+            >
+              <ChevronRight size={16} aria-hidden />
+            </button>
           </div>
-          <button
-            type="button"
-            className="year-button"
-            onClick={() => setYear((y) => clampYear(y + 1))}
-            disabled={year >= maxYear}
-            aria-label="Next year"
-          >
-            <ChevronRight size={16} aria-hidden />
-          </button>
+
+          {null}
         </div>
       </section>
 
@@ -189,13 +220,26 @@ export default function BirthdayInput({ initialText }: Props) {
           )}
         </label>
         <div className="textarea-frame">
-          <textarea
-            id="json-input"
-            className="control textarea"
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-            rows={16}
-          />
+          <div className="editor-wrap" {...getEditorRootProps()}>
+            <input {...getEditorInputProps()} />
+            <Editor
+              height="40vh"
+              defaultLanguage="json"
+              language="json"
+              value={text}
+              onChange={(val) => setText(val ?? "")}
+              options={{
+                minimap: { enabled: false },
+                fontSize: 14,
+                lineNumbers: "on",
+                scrollBeyondLastLine: false,
+                wordWrap: "on",
+              }}
+            />
+            <div className={`drop-overlay${isEditorDragActive ? " active" : ""}`}>
+              Drop JSON to load
+            </div>
+          </div>
         </div>
       </section>
 
