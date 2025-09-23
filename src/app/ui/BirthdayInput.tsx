@@ -1,5 +1,7 @@
 "use client";
 
+import { ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
+
 import React from "react";
 
 type Props = {
@@ -18,6 +20,12 @@ export default function BirthdayInput({ initialText }: Props) {
   const years = React.useMemo(() => getYearOptions(), []);
   const defaultYear = years[0];
   const [year, setYear] = React.useState<number>(defaultYear);
+  const minYear = years[years.length - 1];
+  const maxYear = years[0];
+  const clampYear = React.useCallback(
+    (y: number) => Math.min(maxYear, Math.max(minYear, y)),
+    [minYear, maxYear],
+  );
   const [text, setText] = React.useState<string>(initialText ?? "[]");
   const [error, setError] = React.useState<string | null>(null);
 
@@ -132,18 +140,44 @@ export default function BirthdayInput({ initialText }: Props) {
         <label htmlFor="year-select" className="label">
           Year
         </label>
-        <select
-          id="year-select"
-          className="control select"
-          value={year}
-          onChange={(e) => setYear(Number(e.target.value))}
-        >
-          {years.map((y) => (
-            <option key={y} value={y}>
-              {y}
-            </option>
-          ))}
-        </select>
+        <div className="year-controls" role="group" aria-label="Choose year">
+          <button
+            type="button"
+            className="year-button"
+            onClick={() => setYear((y) => clampYear(y - 1))}
+            disabled={year <= minYear}
+            aria-label="Previous year"
+          >
+            <ChevronLeft size={16} aria-hidden />
+          </button>
+          <div className="year-select-wrap">
+            <select
+              id="year-select"
+              className="control select year-select"
+              value={year}
+              onChange={(e) => setYear(Number(e.target.value))}
+              aria-label="Year"
+            >
+              {years.map((y) => (
+                <option key={y} value={y}>
+                  {y}
+                </option>
+              ))}
+            </select>
+            <span className="select-icon" aria-hidden>
+              <ChevronDown size={16} />
+            </span>
+          </div>
+          <button
+            type="button"
+            className="year-button"
+            onClick={() => setYear((y) => clampYear(y + 1))}
+            disabled={year >= maxYear}
+            aria-label="Next year"
+          >
+            <ChevronRight size={16} aria-hidden />
+          </button>
+        </div>
       </section>
 
       <section className="field">

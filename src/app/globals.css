@@ -53,6 +53,68 @@ body {
   padding-right: 2rem;
 }
 
+/* Year segmented control */
+.year-controls {
+  display: inline-flex;
+  align-items: stretch;
+  gap: 0;
+  border: 1px solid #c9c9c9;
+  border-radius: 8px;
+  background: #fff;
+  overflow: hidden;
+  width: 100%;
+}
+
+.year-button {
+  border: 0;
+  background: #fff;
+  padding: 0.45rem 0.6rem;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  color: #333;
+  min-width: 2.25rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.year-button:hover:not(:disabled) {
+  background: #f1f1f1;
+}
+
+.year-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.year-select-wrap {
+  position: relative;
+  flex: 1 1 auto;
+}
+
+.year-select.control {
+  border: 0;
+  border-left: 1px solid #e0e0e0;
+  border-right: 1px solid #e0e0e0;
+  border-radius: 0;
+  width: 100%;
+  min-width: 0;
+  background-image: none; /* we'll inject icon */
+  padding-right: 2rem;
+}
+
+.select-icon {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #555;
+  pointer-events: none;
+  display: inline-flex;
+}
+
 .textarea {
   resize: vertical;
   min-height: 14rem;
