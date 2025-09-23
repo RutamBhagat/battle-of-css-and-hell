@@ -1,5 +1,5 @@
+import BirthdayInput from "./ui/BirthdayInput";
+
 export default function Home() {
-  return (
-    <div></div>
-  );
+  return <BirthdayInput />;
 }
