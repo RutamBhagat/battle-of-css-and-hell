@@ -7,6 +7,8 @@ export default function page() {
     <main className="battle-canvas">
       <div className="half top"></div>
       <div className="half bottom big"></div>
+      <div className="cap cap-start"></div>
+      <div className="cap cap-end"></div>
     </main>
   );
 }

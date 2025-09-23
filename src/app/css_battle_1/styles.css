@@ -1,10 +1,12 @@
 body {
   margin: 0;
 }
+
 :root {
   --battle-bg: #f5d6b4;
   --spiral-color: #d86f45;
 }
+
 .battle-canvas {
   display: flex;
   justify-content: center;
@@ -42,4 +44,24 @@ body {
   height: 160px;
   clip-path: inset(50% 0 0 0); /* bottom half */
   transform: translateX(-20px); /* horizontal offset */
+}
+
+.cap {
+  position: absolute;
+  width: 20px; /* stroke thickness */
+  height: 20px;
+  background: var(--spiral-color);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+}
+
+/* inner cap (spiral start) */
+.cap-start {
+  transform: translate(-40px, -10px); /* left + up */
+}
+
+/* outer cap (spiral end) */
+.cap-end {
+  transform: translate(-120px, -10px); /* more left + up */
 }
