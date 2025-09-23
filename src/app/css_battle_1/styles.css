@@ -1,46 +1,45 @@
-<main class="battle-canvas">
-  <div class="half top"></div>
-  <div class="half bottom"></div>
-</main>
-
-<style>
-body {margin:0}
+body {
+  margin: 0;
+}
 :root {
-  --battle-bg:#f5d6b4;
-  --spiral-color:#d86f45;
+  --battle-bg: #f5d6b4;
+  --spiral-color: #d86f45;
 }
 .battle-canvas {
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  background:var(--battle-bg);
-  min-height:100vh;
-  position:relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--battle-bg);
+  min-height: 100vh;
+  position: relative;
 }
 
 .half {
-  width:120px;
-  height:120px;
-  border:20px solid var(--spiral-color);
-  border-radius:50%;
-  background:var(--battle-bg);
-  position:absolute;
+  border: 20px solid var(--spiral-color);
+  border-radius: 50%;
+  background: var(--battle-bg);
+  position: absolute;
 }
 .half::after {
-  content:"";
-  position:absolute;
-  inset:20px;
-  border:20px solid var(--spiral-color);
-  border-radius:50%;
-  background:var(--battle-bg);
+  content: "";
+  position: absolute;
+  inset: 20px;
+  border: 20px solid var(--spiral-color);
+  border-radius: 50%;
+  background: var(--battle-bg);
 }
 
+/* smaller top arc */
 .top {
-  clip-path:inset(0 0 50% 0); /* keep top half */
+  width: 120px;
+  height: 120px;
+  clip-path: inset(0 0 50% 0); /* top half */
 }
 
-.bottom {
-  clip-path:inset(50% 0 0 0); /* keep bottom half */
-  transform:translateX(-20px); /* move entire circle center left */
+/* bigger bottom arc */
+.bottom.big {
+  width: 160px; /* larger radius */
+  height: 160px;
+  clip-path: inset(50% 0 0 0); /* bottom half */
+  transform: translateX(-20px); /* horizontal offset */
 }
-</style>
