@@ -316,7 +316,7 @@ export default function BirthdayInput({ initialText }: Props) {
           <div className="editor-wrap" {...getEditorRootProps()}>
             <input {...getEditorInputProps()} />
             <Editor
-              height="40vh"
+              height="75vh"
               defaultLanguage="json"
               language="json"
               value={text}
