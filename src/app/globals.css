@@ -1,16 +1,17 @@
 :root {
   color-scheme: light;
-  --c-slate: #545D79;
-  --c-green: #8AB721;
-  --c-pink: #C77D99;
-  --c-blue: #78CAE3;
-  --c-red: #E64A33;
+  --c-slate: #545d79;
+  --c-green: #8ab721;
+  --c-pink: #c77d99;
+  --c-blue: #78cae3;
+  --c-red: #e64a33;
 }
 
 body {
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, sans-serif;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell,
+    "Helvetica Neue", Arial, sans-serif;
   line-height: 1.5;
-  background: #EAF0F2;
+  background: #eaf0f2;
 }
 
 .container {
@@ -49,7 +50,7 @@ body {
   background-repeat: no-repeat;
   background-position: right 0.75rem center;
   background-size: 14px;
-  padding-right: 2rem; /* keep text clear of arrow */
+  padding-right: 2rem;
 }
 
 .textarea {
@@ -65,10 +66,9 @@ body {
   border: 1px solid #c9c9c9;
   border-radius: 8px;
   background: #fff;
-  overflow: hidden; /* ensure rounded corners around scrollbar */
+  overflow: hidden;
 }
 
-/* Remove native focus ring on inner textarea and style the frame instead */
 .textarea:focus {
   outline: none;
 }
@@ -106,7 +106,6 @@ body {
   flex: 1;
 }
 
-/* Calendar preview (simple, empty) */
 .calendar {
   margin-top: 1rem;
   display: flex;
@@ -122,7 +121,7 @@ body {
 }
 
 .day-header {
-  background: #ABA0EC;
+  background: #aba0ec;
   color: #fff;
   font-weight: 600;
   font-size: 0.75rem;
@@ -136,7 +135,7 @@ body {
   background: #f3f5f7;
   border: 1px solid #d7d7d7;
   border-top: none;
-  aspect-ratio: 1 / 1; /* square */
+  aspect-ratio: 1 / 1;
   display: flex;
 }
 
@@ -152,8 +151,8 @@ body {
 }
 
 .day-empty-state {
-  background-color: #DEE4E6;
-  background-image: url('/empty-face.svg');
+  background-color: #dee4e6;
+  background-image: url("/empty-face.svg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 50%;
@@ -172,11 +171,21 @@ body {
   background: #fff;
 }
 
-.color-0 { background: var(--c-slate); }
-.color-1 { background: var(--c-green); }
-.color-2 { background: var(--c-pink); }
-.color-3 { background: var(--c-blue); }
-.color-4 { background: var(--c-red); }
+.color-0 {
+  background: var(--c-slate);
+}
+.color-1 {
+  background: var(--c-green);
+}
+.color-2 {
+  background: var(--c-pink);
+}
+.color-3 {
+  background: var(--c-blue);
+}
+.color-4 {
+  background: var(--c-red);
+}
 .day-header-right {
   text-align: right;
 }
