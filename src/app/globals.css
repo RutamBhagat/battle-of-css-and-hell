@@ -254,6 +254,12 @@ body {
   overflow: hidden;
 }
 
+/* Allow overflow only while a tooltip is visible */
+.day-card:has(.cell[data-name][data-date]:hover),
+.day-card:has(.cell[data-name][data-date]:focus) {
+  overflow: visible;
+}
+
 .day-header {
   background: #aba0ec;
   color: #fff;
@@ -262,7 +268,8 @@ body {
   letter-spacing: 0.04em;
   text-transform: uppercase;
   padding: 12px 12px;
-  border-radius: 0;
+  border-radius: 8px 8px 0 0; /* keep header clipped when card allows overflow */
+  overflow: hidden;
   border-bottom: 1px solid #7a7a7a; /* clean separation below title */
 }
 
@@ -397,14 +404,18 @@ body {
   transform: translateX(-50%);
   background: rgba(17, 17, 17, 0.95);
   color: #fff;
-  padding: 4px 6px;
+  padding: 6px 8px;
   border-radius: 4px;
-  white-space: pre;
+  white-space: pre-wrap;
+  max-width: 340px;
+  min-width: 140px;
+  overflow-wrap: anywhere;
   font-size: 0.7rem;
   line-height: 1;
+  text-align: center;
   margin-bottom: 6px;
   pointer-events: none;
-  z-index: 20;
+  z-index: 100;
 }
 
 .cell[data-name][data-date]:hover::before {
