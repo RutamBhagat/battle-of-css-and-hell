@@ -29,8 +29,8 @@ export default function BirthdayInput({ initialText }: Props) {
           if (!res.ok) throw new Error(String(res.status));
           const body = await res.text();
           setText(body);
-        } catch (_err) {
-          // keep default [] on failure
+        } catch (err) {
+          console.error("Failed to load /birthday.json", err);
         }
       })();
     }
