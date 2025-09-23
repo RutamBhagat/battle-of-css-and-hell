@@ -1,14 +1,12 @@
 import "./styles.css";
 
-import React from "react";
-
-type Props = {};
-
-export default function page({}: Props) {
+export default function Page() {
   return (
     <main className="battle-canvas">
-      <div className="circle yellow"></div>
-      <div className="circle red"></div>
+      <div className="circle yellow top"></div>
+      <div className="circle yellow bottom"></div>
+      <div className="circle red top"></div>
+      <div className="circle red bottom"></div>
     </main>
   );
 }

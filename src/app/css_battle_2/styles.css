@@ -1,5 +1,5 @@
 body {
-  margin: 0;
+  margin: 0; /* reset browser default */
 }
 
 .battle-canvas {
@@ -28,17 +28,14 @@ body {
   transform: translateX(50px);
 }
 
+/* halves */
 .top {
   clip-path: inset(0 0 50% 0);
 }
-
 .bottom {
   clip-path: inset(50% 0 0 0);
 }
 
-.red.top {
-  z-index: 2;
-}
-.yellow.bottom {
-  z-index: 2;
-}
+/* control stacking */
+.red.top { z-index: 2; }
+.yellow.bottom { z-index: 2; }
