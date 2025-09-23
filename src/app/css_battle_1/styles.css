@@ -19,9 +19,6 @@
   background: repeating-radial-gradient(
     circle,
     var(--spiral-color) 0 22px,
-    /* stroke thickness (~22px) */ transparent 22px 44px /* same-size gap */
+    transparent 22px 44px
   );
-  /* comment out the mask for now */
-  /* -webkit-mask: none; */
-  /* mask: none; */
 }
