@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { z } from "zod";
 import moment from "moment";
-import EditorSection from "./EditorSection";
+import JsonEditor from "./JsonEditor";
 import type { Person } from "./utils";
 
 type Props = {
@@ -69,7 +69,7 @@ export default function JsonInput({ onPeopleChange, initialText }: Props) {
 
   return (
     <>
-      <EditorSection text={text} setText={setText} />
+      <JsonEditor text={text} setText={setText} />
       {error ? (
         <div role="alert" style={{ color: "#b00020", marginTop: 8 }}>
           {error}
@@ -78,4 +78,3 @@ export default function JsonInput({ onPeopleChange, initialText }: Props) {
     </>
   );
 }
-
