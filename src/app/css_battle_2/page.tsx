@@ -6,15 +6,9 @@ type Props = {};
 
 export default function page({}: Props) {
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
-      }}
-    >
-      <div className="spiral"></div>
-    </div>
+    <main className="battle-canvas">
+      <div className="circle yellow"></div>
+      <div className="circle red"></div>
+    </main>
   );
 }

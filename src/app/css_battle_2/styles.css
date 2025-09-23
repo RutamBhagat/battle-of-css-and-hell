@@ -1,5 +1,29 @@
-.spiral {
-  width: 100px;
-  height: 100px;
-  background: #dd6b4d;
+body {
+  margin: 0;
+}
+
+.battle-canvas {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #3f4869;
+  min-height: 100vh;
+  position: relative;
+}
+
+.circle {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.yellow {
+  background: #f4da64;
+  transform: translateX(-50px); /* left of center */
+}
+
+.red {
+  background: #e25c57;
+  transform: translateX(50px); /* right of center */
 }
