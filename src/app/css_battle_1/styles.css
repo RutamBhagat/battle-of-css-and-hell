@@ -1,11 +1,10 @@
 .battle-canvas {
   position: relative;
-  width: 400px;
-  height: 300px;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #F5D6B4;
+  min-height: 100vh;
 }
 
 .spiral-shape {
