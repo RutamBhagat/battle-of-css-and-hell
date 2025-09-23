@@ -88,7 +88,7 @@ export default function BirthdayInput({ initialText = "[]" }: Props) {
         <label htmlFor="year-select" className="label">Year</label>
         <select
           id="year-select"
-          className="control"
+          className="control select"
           value={year}
           onChange={(e) => setYear(Number(e.target.value))}
         >

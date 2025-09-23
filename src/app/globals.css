@@ -44,9 +44,23 @@ body {
   color: #111;
 }
 
+.select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20' fill='none'%3E%3Cpath d='M6 8l4 4 4-4' stroke='%23555' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 14px;
+  padding-right: 2rem; /* keep text clear of arrow */
+}
+
 .textarea {
   resize: vertical;
   min-height: 14rem;
+  border-radius: 8px;
+  background-clip: padding-box;
+  overflow: auto;
 }
 
 .error {
