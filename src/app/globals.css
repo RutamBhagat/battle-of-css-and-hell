@@ -179,7 +179,7 @@ body {
 .day-card {
   display: flex;
   flex-direction: column;
-  width: 120px;
+  width: 150px;
 }
 
 .day-header {
