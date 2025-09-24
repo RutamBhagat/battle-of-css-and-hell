@@ -14,10 +14,6 @@ body {
   background: #eaf0f2;
 }
 
-.label {
-  font-weight: 600;
-}
-
 .year-select.control {
   border: 0;
   border-left: 1px solid #e0e0e0;
