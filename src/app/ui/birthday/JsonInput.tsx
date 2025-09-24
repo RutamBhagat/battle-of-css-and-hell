@@ -1,10 +1,11 @@
 "use client";
 
-import moment from "moment";
 import { useEffect, useMemo, useState } from "react";
-import { z } from "zod";
+
 import JsonEditor from "./JsonEditor";
 import type { Person } from "./utils";
+import moment from "moment";
+import { z } from "zod";
 
 type Props = {
   onPeopleChange: (people: Person[]) => void;
@@ -24,7 +25,6 @@ export default function JsonInput({ onPeopleChange, initialText }: Props) {
         const body = await res.text();
         setText(body);
       } catch {
-        // optional; ignore
       }
     })();
   }, [initialText]);

@@ -22,15 +22,7 @@ body {
   background: #eaf0f2;
 }
 
-.container {
-  max-width: 96rem;
-  margin: 0 auto;
-  padding: 1rem;
-  padding-top: calc(6vh + 56px); /* keep content below floating navbar */
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
+/* .container moved to page.module.css */
 
 .field {
   display: flex;
@@ -62,7 +54,6 @@ body {
   padding-right: 2rem;
 }
 
-/* Year segmented control */
 .year-controls {
   display: inline-flex;
   align-items: stretch;
@@ -116,7 +107,7 @@ body {
   border-radius: 0;
   width: 100%;
   min-width: 0;
-  background-image: none; /* we'll inject icon */
+  background-image: none;
   padding-right: 2rem;
 }
 
@@ -169,7 +160,6 @@ body {
   position: relative;
 }
 
-/* Extra spacing above the JSON editor section */
 .editor-section {
   margin-top: 1.5rem;
 }
@@ -263,7 +253,6 @@ body {
   overflow: hidden;
 }
 
-/* Allow overflow only while a tooltip is visible */
 .day-card:has(.cell[data-name][data-date]:hover),
 .day-card:has(.cell[data-name][data-date]:focus) {
   overflow: visible;
@@ -277,9 +266,9 @@ body {
   letter-spacing: 0.04em;
   text-transform: uppercase;
   padding: 12px 12px;
-  border-radius: 8px 8px 0 0; /* keep header clipped when card allows overflow */
+  border-radius: 8px 8px 0 0;
   overflow: hidden;
-  border-bottom: 1px solid #7a7a7a; /* clean separation below title */
+  border-bottom: 1px solid #7a7a7a;
 }
 
 .day-body {
@@ -289,7 +278,6 @@ body {
   display: flex;
 }
 
-/* YEAR card layout: 3 equal stacked rectangles */
 .year-body {
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
@@ -329,7 +317,7 @@ body {
 
 .year-segment-select-wrap {
   padding: 0;
-  display: block; /* ensure the select can span full width */
+  display: block;
   width: 100%;
   height: 100%;
 }
@@ -404,7 +392,6 @@ body {
   text-align: right;
 }
 
-/* Simple tooltip for cells */
 .cell[data-name][data-date]:hover::after {
   content: attr(data-name) "A" attr(data-date);
   position: absolute;
@@ -439,7 +426,6 @@ body {
   margin-bottom: 0px;
 }
 
-/* Centered pill navbar (scoped classes to avoid conflicts) */
 .nav-pill-wrap {
   position: fixed;
   top: 3vh;

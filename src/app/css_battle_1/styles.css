@@ -31,24 +31,22 @@ body {
   background: var(--battle-bg);
 }
 
-/* smaller top arc */
 .top {
   width: 120px;
   height: 120px;
-  clip-path: inset(0 0 49% 0); /* tiny overlap instead of 50% */
+  clip-path: inset(0 0 49% 0);
 }
 
-/* bigger bottom arc */
 .bottom.big {
   width: 160px;
   height: 160px;
-  clip-path: inset(49% 0 0 0); /* tiny overlap */
+  clip-path: inset(49% 0 0 0);
   transform: translateX(-20px);
 }
 
 .cap {
   position: absolute;
-  width: 20px; /* stroke thickness */
+  width: 20px;
   height: 20px;
   background: var(--spiral-color);
   border-radius: 50%;
@@ -56,12 +54,10 @@ body {
   left: 50%;
 }
 
-/* inner cap (spiral start) */
 .cap-start {
-  transform: translate(-40px, -10px); /* left + up */
+  transform: translate(-40px, -10px);
 }
 
-/* outer cap (spiral end) */
 .cap-end {
-  transform: translate(-120px, -10px); /* more left + up */
+  transform: translate(-120px, -10px);
 }

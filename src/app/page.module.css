@@ -1,0 +1,10 @@
+/* Moved from globals.css */
+.container {
+  max-width: 96rem;
+  margin: 0 auto;
+  padding: 1rem;
+  padding-top: calc(6vh + 56px);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}

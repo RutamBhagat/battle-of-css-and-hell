@@ -5,6 +5,7 @@ import DaysSection from "./birthday/DaysSection";
 import JsonInput from "./birthday/JsonInput";
 import { getYearOptions, type Person } from "./birthday/utils";
 import YearSelector from "./birthday/YearSelector";
+import styles from "../page.module.css";
 
 type Props = { initialText?: string };
 
@@ -17,7 +18,6 @@ export default function BirthdayInput({ initialText }: Props) {
 
   const [people, setPeople] = useState<Person[]>([]);
 
-  // Global arrow key hotkeys for year (unless typing in inputs/editors)
   useEffect(() => {
     function onKeyDown(e: KeyboardEvent) {
       const target = e.target as HTMLElement | null;
@@ -41,7 +41,7 @@ export default function BirthdayInput({ initialText }: Props) {
   }, [minYear, maxYear]);
 
   return (
-    <main className="container">
+    <main className={styles.container}>
       <section className="calendar">
         <YearSelector
           year={year}

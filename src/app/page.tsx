@@ -6,6 +6,7 @@ import DaysSection from "./ui/birthday/DaysSection";
 import JsonInput from "./ui/birthday/JsonInput";
 import { getYearOptions, type Person } from "./ui/birthday/utils";
 import YearSelector from "./ui/birthday/YearSelector";
+import styles from "./page.module.css";
 
 export default function Home() {
   const years = useMemo(() => getYearOptions(), []);
@@ -39,7 +40,7 @@ export default function Home() {
   }, [minYear, maxYear]);
 
   return (
-    <main className="container">
+    <main className={styles.container}>
       <section className="calendar">
         <YearSelector
           year={year}
