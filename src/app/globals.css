@@ -24,8 +24,6 @@ body {
   gap: 1rem;
 }
 
-/* .field moved to page.module.css */
-
 .label {
   font-weight: 600;
 }
@@ -231,8 +229,6 @@ body {
 .day-values {
   flex: 1;
 }
-
-/* .calendar moved to page.module.css */
 
 .day-card {
   display: flex;
