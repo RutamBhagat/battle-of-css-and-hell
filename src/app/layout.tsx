@@ -1,15 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import Link from "next/link";
-import ClaudeAI from "./ui/claude";
 import "./globals.css";
-
-type NavLink = { href: string; label: string };
-const NAV_LINKS: NavLink[] = [
-  { href: "/", label: "Home" },
-  { href: "/css_battle_1", label: "CSS Battle 1" },
-  { href: "/css_battle_2", label: "CSS Battle 2" },
-];
+import Navbar from "./ui/Navbar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,16 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <div className="nav-pill-wrap">
-          <nav className="nav-pill" aria-label="Main">
-            <ClaudeAI className="nav-pill__icon-svg" aria-hidden="true" />
-            {NAV_LINKS.map(({ href, label }) => (
-              <Link key={href} className="nav-pill__link" href={href}>
-                {label}
-              </Link>
-            ))}
-          </nav>
-        </div>
+        <Navbar />
         {children}
       </body>
     </html>

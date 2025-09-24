@@ -1,0 +1,47 @@
+.navPillWrap {
+  position: fixed;
+  top: 3vh;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.navPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.25rem;
+  background: #ffffff;
+  padding: 0.5rem 0.75rem;
+  border-radius: 9999px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e6eaee;
+}
+
+.navPillIcon {
+  width: 16px;
+  height: 16px;
+  border-radius: 9999px;
+  background: #ff7a59;
+}
+
+.navPillIconSvg {
+  width: 22px;
+  height: 22px;
+  display: inline-block;
+  margin-left: 6px;
+}
+
+.navPillLink {
+  color: #1a1a1a;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 0.4rem 0.6rem;
+  border-radius: 9999px;
+}
+
+.navPillLink:hover {
+  background: #f3f5f7;
+}
