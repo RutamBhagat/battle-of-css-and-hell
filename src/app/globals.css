@@ -468,6 +468,13 @@ body {
   background: #ff7a59; /* orange placeholder */
 }
 
+.nav-pill__icon-svg {
+  width: 22px;
+  height: 22px;
+  display: inline-block;
+  margin-left: 6px; /* nudge right from pill edge */
+}
+
 .nav-pill__link {
   color: #1a1a1a;
   text-decoration: none;
