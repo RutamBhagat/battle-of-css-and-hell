@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import Link from "next/link";
 import DaysSection from "./ui/birthday/DaysSection";
 import JsonInput from "./ui/birthday/JsonInput";
 import { getYearOptions, type Person } from "./ui/birthday/utils";

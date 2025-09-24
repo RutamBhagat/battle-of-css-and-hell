@@ -26,6 +26,7 @@ body {
   max-width: 96rem;
   margin: 0 auto;
   padding: 1rem;
+  padding-top: calc(6vh + 56px); /* keep content below floating navbar */
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -436,4 +437,46 @@ body {
   border-top: 0;
   border-bottom-color: rgba(17, 17, 17, 0.95);
   margin-bottom: 0px;
+}
+
+/* Centered pill navbar (scoped classes to avoid conflicts) */
+.nav-pill-wrap {
+  position: fixed;
+  top: 3vh;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.nav-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.25rem;
+  background: #ffffff;
+  padding: 0.5rem 0.75rem;
+  border-radius: 9999px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e6eaee;
+}
+
+.nav-pill__icon {
+  width: 16px;
+  height: 16px;
+  border-radius: 9999px;
+  background: #ff7a59; /* orange placeholder */
+}
+
+.nav-pill__link {
+  color: #1a1a1a;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 0.4rem 0.6rem;
+  border-radius: 9999px;
+}
+
+.nav-pill__link:hover {
+  background: #f3f5f7;
 }
