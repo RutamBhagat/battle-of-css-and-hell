@@ -2,7 +2,7 @@ body {
   margin: 0; /* reset browser default */
 }
 
-.battle-canvas {
+.battle-canvas-2 {
   display: flex;
   justify-content: center;
   align-items: center;

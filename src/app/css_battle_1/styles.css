@@ -7,7 +7,7 @@ body {
   --spiral-color: #d86f45;
 }
 
-.battle-canvas {
+.battle-canvas-1 {
   display: flex;
   justify-content: center;
   align-items: center;
