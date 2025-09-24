@@ -42,7 +42,7 @@ export default function BirthdayInput({ initialText }: Props) {
 
   return (
     <main className={styles.container}>
-      <section className="calendar">
+      <section className={styles.calendar}>
         <YearSelector
           year={year}
           minYear={minYear}

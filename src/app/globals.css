@@ -24,11 +24,7 @@ body {
   gap: 1rem;
 }
 
-.field {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
+/* .field moved to page.module.css */
 
 .label {
   font-weight: 600;
@@ -236,13 +232,7 @@ body {
   flex: 1;
 }
 
-.calendar {
-  margin-top: 1rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  justify-content: center;
-}
+/* .calendar moved to page.module.css */
 
 .day-card {
   display: flex;

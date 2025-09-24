@@ -2,6 +2,7 @@
 
 import Editor from "@monaco-editor/react";
 import { useCallback } from "react";
+import styles from "../../page.module.css";
 import { useDropzone } from "react-dropzone";
 
 type Props = {
@@ -33,7 +34,7 @@ export default function JsonEditor({ text, setText }: Props) {
   });
 
   return (
-    <section className="field editor-section">
+    <section className={`${styles.field} editor-section`}>
       <div className="textarea-frame">
         <div className="editor-wrap" {...getRootProps()}>
           <input {...getInputProps()} />
