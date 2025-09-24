@@ -1,11 +1,11 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import styles from "../page.module.css";
 import DaysSection from "./birthday/DaysSection";
 import JsonInput from "./birthday/JsonInput";
 import { getYearOptions, type Person } from "./birthday/utils";
 import YearSelector from "./birthday/YearSelector";
-import styles from "../page.module.css";
 
 type Props = { initialText?: string };
 

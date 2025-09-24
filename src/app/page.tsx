@@ -1,12 +1,11 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import Link from "next/link";
+import styles from "./page.module.css";
 import DaysSection from "./ui/birthday/DaysSection";
 import JsonInput from "./ui/birthday/JsonInput";
 import { getYearOptions, type Person } from "./ui/birthday/utils";
 import YearSelector from "./ui/birthday/YearSelector";
-import styles from "./page.module.css";
 
 export default function Home() {
   const years = useMemo(() => getYearOptions(), []);
